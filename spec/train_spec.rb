@@ -7,4 +7,8 @@ describe 'Train' do
       expect(test_train).to be_an_instance_of Train
     end
   end
+
+  it 'starts out with no trains' do
+    expect(Train.all).to eq []
+  end
 end
