@@ -26,4 +26,8 @@ attr_accessor :name, :id
     results = DB.exec("INSERT INTO trains (name) VALUES ('#{@name}') RETURNING id;")
     @id = results.first['id'].to_i
   end
+
+  def delete
+    results = DB.exec("DELETE FROM trains WHERE id = #{self.id};")
+  end
 end

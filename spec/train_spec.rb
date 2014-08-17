@@ -23,4 +23,13 @@ describe 'Train' do
     test_train.save
     expect(Train.all).to eq [test_train]
   end
+
+  it 'removes train lines from the array' do
+    test_train1 = Train.new({:name => 'green_line'})
+    test_train2 = Train.new({:name => 'blue_line'})
+    test_train1.save
+    test_train2.save
+    test_train1.delete
+    expect(Train.all).to eq [test_train2]
+  end
 end
