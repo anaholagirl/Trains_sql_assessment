@@ -2,10 +2,15 @@ class Train
 
 attr_accessor :name, :id
 
-  @@all_trains = []
-
   def self.all
-    @@all_trains
+    results = DB.exec("SELECT * FROM trains;")
+    trains = []
+    results.each do |train|
+      name = train['name']
+      id = train['id'].to_i
+      trains << Train.new({:name => name, :id => id})
+    end
+    trains
   end
 
   def initialize(attributes)
@@ -15,5 +20,10 @@ attr_accessor :name, :id
 
   def ==(another_train)
     self.name == another_train.name && self.id == another_train.id
+  end
+
+  def save
+    results = DB.exec("INSERT INTO trains (name) VALUES ('#{@name}') RETURNING id;")
+    @id = results.first['id'].to_i
   end
 end

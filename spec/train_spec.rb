@@ -17,4 +17,10 @@ describe 'Train' do
     test_train2 = Train.new({:name => 'green_line'})
     expect(test_train1).to eq test_train2
   end
+
+  it 'saves train lines into the array' do
+    test_train = Train.new({:name => 'green_line'})
+    test_train.save
+    expect(Train.all).to eq [test_train]
+  end
 end
