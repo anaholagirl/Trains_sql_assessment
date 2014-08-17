@@ -12,4 +12,8 @@ attr_accessor :name, :id
     @name = attributes[:name]
     @id = attributes[:id]
   end
+
+  def ==(another_train)
+    self.name == another_train.name && self.id == another_train.id
+  end
 end
