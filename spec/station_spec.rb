@@ -7,4 +7,8 @@ describe Station do
       expect(test_station).to be_an_instance_of Station
     end
   end
+
+  it 'starts out with no stations' do
+    expect(Station.all).to eq []
+  end
 end
