@@ -17,4 +17,8 @@ class Station
     @name = attributes[:name]
     @id = attributes[:id]
   end
+
+  def ==(another_station)
+    self.name == another_station.name && self.id == another_station.id
+  end
 end
