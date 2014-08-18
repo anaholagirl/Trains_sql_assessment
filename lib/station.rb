@@ -26,4 +26,8 @@ class Station
     results = DB.exec("INSERT INTO stations (name) VALUES ('#{@name}') RETURNING id;")
     @id = results.first['id'].to_i
   end
+
+  def delete
+    results = DB.exec("DELETE FROM stations WHERE id = #{self.id};")
+  end
 end

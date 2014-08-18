@@ -23,4 +23,13 @@ describe Station do
     test_station.save
     expect(Station.all).to eq [test_station]
   end
+
+  it 'removes train stations from the array' do
+    test_station1 = Station.new({:name => 'Snoopy'})
+    test_station2 = Station.new({:name => 'Linus'})
+    test_station1.save
+    test_station2.save
+    test_station1.delete
+    expect(Station.all).to eq [test_station2]
+  end
 end
