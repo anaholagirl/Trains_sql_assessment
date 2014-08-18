@@ -17,4 +17,10 @@ describe Station do
     test_station2 = Station.new({:name => 'Snoopy'})
     expect(test_station1).to eq test_station2
   end
+
+  it 'saves train stations into the array' do
+    test_station = Station.new({:name => 'Snoopy'})
+    test_station.save
+    expect(Station.all).to eq [test_station]
+  end
 end

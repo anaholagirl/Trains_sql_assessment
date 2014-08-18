@@ -21,4 +21,9 @@ class Station
   def ==(another_station)
     self.name == another_station.name && self.id == another_station.id
   end
+
+  def save
+    results = DB.exec("INSERT INTO stations (name) VALUES ('#{@name}') RETURNING id;")
+    @id = results.first['id'].to_i
+  end
 end
