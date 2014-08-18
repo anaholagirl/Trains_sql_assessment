@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 describe 'Train' do
   describe 'initialize' do
@@ -31,5 +32,11 @@ describe 'Train' do
     test_train2.save
     test_train1.delete
     expect(Train.all).to eq [test_train2]
+  end
+
+  it 'starts with an empty array of stops' do
+    test_train = Train.new({:name => 'green_line'})
+    test_train.save
+    expect(test_train.stops).to eq []
   end
 end
