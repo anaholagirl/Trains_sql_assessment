@@ -49,16 +49,27 @@ attr_accessor :name, :id
   end
 
   def add_stop(input_station)
-    DB.exec("INSERT INTO stops (stations_id, trains_id) VALUES ('#{input_station.id}', '#{self.id}') RETURNING id;")
+    DB.exec("INSERT INTO stops (stations_id, trains_id) VALUES (#{input_station.id}, #{self.id}) RETURNING id;")
   end
 
-  def self.find(train_name)
-    selected_train = []
+  def self.find(input_train)
     Train.all.each do |train|
-      if train.name == train_name
-      selected_train << train
+      if train.name == input_train
+        return train
       end
     end
-    selected_train
   end
+
+  # def self.find(input_train)
+  #   selected_train = []
+  #   Train.all.each do |train|
+  #     if train.name == input_train
+  #       name = train['name']
+  #       id = train['id'].to_i
+  #     selected_train << Train.new({:name => name, :id => id})
+  #     binding.pry
+  #     end
+  #   end
+  #   selected_train
+  # end
 end

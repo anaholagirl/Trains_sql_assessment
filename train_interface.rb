@@ -99,20 +99,50 @@ def add_station
 end
 
 def add_train_stop
-  puts "\n\nHere is a list of all the trains.\n\n"
-  puts Train.all.name
+  list_trains
   puts "\n\n"
   puts "What is the name of the train you would like to add a stop to?"
   train_name = gets.chomp
   puts "\n\n"
-  puts "Here is a list of all current stations in the system."
-  puts Station.all.name
-  puts "\n\n"
+  list_stations
   puts "What is the name of the station you would like to add as a stop?"
   station_name = gets.chomp
-  selected_train =
+  found_train = Train.find(train_name)
+  found_station = Station.find(station_name)
+  binding.pry
+  found_train.add_stop(found_station)
+  "\n\n"
+  puts "Your train stop has been added!"
+end
 
+def list_trains
+  puts "\n\nHere is a list of all the trains in the system.\n\n"
+  Train.all.each do |train|
+    puts train.name
+  end
+end
 
+def list_stations
+  puts "Here is a list of all current stations in the system."
+  Station.all.each do |station|
+    puts station.name
+  puts "\n\n"
+  end
+end
+
+def list_stops
+  puts "Here is a list of all the trains in this system."
+  puts "\n\n"
+  list_trains
+  puts "What is the name of the train you would like to see the stops for?"
+  chosen_train = gets.chomp
+  puts "\n\n"
+  puts "Here is a list of all the stops for '#{chosen_train}'."
+  found_train = Train.find(chosen_train)
+  results = found_train.stops
+  results.each do |result|
+    puts result.name
+  end
 end
 
 main_menu

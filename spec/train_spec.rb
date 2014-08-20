@@ -59,6 +59,6 @@ describe 'Train' do
   it 'finds a specific train' do
     test_train = Train.new({:name => 'green_line'})
     test_train.save
-    expect(Train.find('green_line')).to eq [test_train]
+    expect(Train.find(test_train.name)).to eq test_train
   end
 end

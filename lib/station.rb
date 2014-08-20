@@ -51,13 +51,21 @@ class Station
     line_stops
   end
 
-  def self.find(station_name)
-    selected_station = []
+  def self.find(input_station)
     Station.all.each do |station|
-      if station.name == station_name
-      selected_station << station
+      if station.name == input_station
+        return station
       end
     end
-    selected_station
   end
+
+  # def self.find(input_station)
+  #   selected_station = []
+  #   Station.all.each do |station|
+  #     if station.name == input_station
+  #     selected_station << station
+  #     end
+  #   end
+  #   selected_station
+  # end
 end

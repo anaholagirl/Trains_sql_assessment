@@ -52,6 +52,6 @@ describe Station do
   it 'finds a specific station' do
     test_station = Station.new({:name => 'Snoopy'})
     test_station.save
-    expect(Station.find('Snoopy')).to eq [test_station]
+    expect(Station.find(test_station.name)).to eq test_station
   end
 end
