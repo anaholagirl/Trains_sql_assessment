@@ -34,9 +34,27 @@ describe 'Train' do
     expect(Train.all).to eq [test_train2]
   end
 
-  it 'starts with an empty array of stops' do
+  it 'edits a train in the system' do
     test_train = Train.new({:name => 'green_line'})
     test_train.save
-    expect(test_train.stops).to eq []
+    test_train.edit_train('yellow_line')
+    # binding.pry
+    expect(test_train.name).to eq 'yellow_line'
   end
+
+  # it 'starts with an empty array of stops' do
+  #   test_train = Train.new({:name => 'green_line'})
+  #   test_train.save
+  #   expect(test_train.stops).to eq []
+  # end
+
+  # it 'adds stops to a train line' do
+  #   test_train = Train.new({:name => 'green_line'})
+  #   test_train.save
+  #   test_station = Station.new({:name => 'Snoopy'})
+  #   test_station.save
+  #   # binding.pry
+  #   test_train.add_stop(test_station.id)
+  #   expect(test_train.stops).to eq [test_station]
+  # end
 end

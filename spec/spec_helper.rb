@@ -9,5 +9,6 @@ RSpec.configure do |config|
   config.after(:each) do
     DB.exec("DELETE FROM trains *;")
     DB.exec("DELETE FROM stations *;")
+    DB.exec("DELETE FROM stops *;")
   end
 end
