@@ -32,4 +32,11 @@ describe Station do
     test_station1.delete
     expect(Station.all).to eq [test_station2]
   end
+
+  it 'edits the information of a train station' do
+    test_station = Station.new({:name => 'Snoopy'})
+    test_station.save
+    test_station.edit_station('Linus')
+    expect(test_station.name).to eq 'Linus'
+  end
 end

@@ -34,7 +34,7 @@ attr_accessor :name, :id
 
   def edit_train(input_name)
     @name = input_name
-    results = DB.exec("UPDATE trains SET name = '#{@name}' WHERE id = '#{self.id}';")
+    DB.exec("UPDATE trains SET name = '#{@name}' WHERE id = '#{self.id}';")
   end
 
   def stops
