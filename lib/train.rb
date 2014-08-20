@@ -34,29 +34,26 @@ attr_accessor :name, :id
 
   def edit_train(input_name)
     @name = input_name
-    results = DB.exec("UPDATE trains SET name = '#{@name}' WHERE id = '#{@id}';")
+    results = DB.exec("UPDATE trains SET name = '#{@name}' WHERE id = '#{self.id}';")
   end
 
-  # def stops
-  # train_stops = []
-  # results = DB.exec("SELECT * FROM stops WHERE trains_id = #{self.id};")
-  # binding.pry
-  #   results.each do |result|
-  #     trains_id = result['trains_id'].to_i
-  #     stations_id = result['stations_id'].to_i
-  #     station_search = DB.exec("SELECT * FROM stations WHERE id = #{stations_id};")
-  #     station_search.each do |station|
-  #       station_found = station['name']
-  #       stations_id = station['id'].to_i
-  #       train_stops << Station.new({:name => station_found, :id => stations_id})
-  #     binding.pry
-  #     end
-  #   end
-  #   train_stops
-  # end
+  def stops
+  train_stops = []
+  results = DB.exec("SELECT * FROM stops WHERE trains_id = #{self.id};")
+    results.each do |result|
+      trains_id = result['trains_id'].to_i
+      stations_id = result['stations_id'].to_i
+      station_search = DB.exec("SELECT * FROM stations WHERE id = #{stations_id};")
+      station_search.each do |station|
+        station_found = station['name']
+        stations_id = station['id'].to_i
+        train_stops << Station.new({:name => station_found, :id => stations_id})
+      end
+    end
+    train_stops
+  end
 
-  # def add_stop(input_station)
-  #   DB.exec("INSERT INTO stops (stations_id, trains_id) VALUES ('#{input_station.id}', '#{@id}') RETURNING id;")
-  # binding.pry
-  # end
+  def add_stop(input_station)
+    DB.exec("INSERT INTO stops (stations_id, trains_id) VALUES ('#{input_station.id}', '#{self.id}') RETURNING id;")
+  end
 end
