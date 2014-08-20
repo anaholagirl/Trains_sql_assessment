@@ -48,4 +48,10 @@ describe Station do
     test_station.add_line(test_train)
     expect(test_station.line_stop).to eq [test_train]
   end
+
+  it 'finds a specific station' do
+    test_station = Station.new({:name => 'Snoopy'})
+    test_station.save
+    expect(Station.find('Snoopy')).to eq [test_station]
+  end
 end

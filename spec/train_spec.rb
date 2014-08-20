@@ -55,4 +55,10 @@ describe 'Train' do
     test_train.add_stop(test_station)
     expect(test_train.stops).to eq [test_station]
   end
+
+  it 'finds a specific train' do
+    test_train = Train.new({:name => 'green_line'})
+    test_train.save
+    expect(Train.find('green_line')).to eq [test_train]
+  end
 end

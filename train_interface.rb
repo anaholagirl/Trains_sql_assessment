@@ -98,6 +98,23 @@ def add_station
   main_menu
 end
 
+def add_train_stop
+  puts "\n\nHere is a list of all the trains.\n\n"
+  puts Train.all.name
+  puts "\n\n"
+  puts "What is the name of the train you would like to add a stop to?"
+  train_name = gets.chomp
+  puts "\n\n"
+  puts "Here is a list of all current stations in the system."
+  puts Station.all.name
+  puts "\n\n"
+  puts "What is the name of the station you would like to add as a stop?"
+  station_name = gets.chomp
+  selected_train =
+
+
+end
+
 main_menu
 
 
