@@ -85,8 +85,16 @@ def add_train
   train_name = gets.chomp
   new_train = Train.new({:name => train_name})
   new_train.save
-  binding.pry
   puts "New Train Created!"
+  main_menu
+end
+
+def add_station
+  puts "What is the name of the station you would like to add?"
+  station_name = gets.chomp
+  new_station = Station.new({:name => station_name})
+  new_station.save
+  puts "New Station Created!"
   main_menu
 end
 
