@@ -38,7 +38,7 @@ attr_accessor :name, :id
   end
 
   def stops
-  train_stops = []
+  station_stops = []
   results = DB.exec("SELECT * FROM stops WHERE trains_id = #{self.id};")
     results.each do |result|
       trains_id = result['trains_id'].to_i
@@ -47,10 +47,10 @@ attr_accessor :name, :id
       station_search.each do |station|
         station_found = station['name']
         stations_id = station['id'].to_i
-        train_stops << Station.new({:name => station_found, :id => stations_id})
+        station_stops << Station.new({:name => station_found, :id => stations_id})
       end
     end
-    train_stops
+    station_stops
   end
 
   def add_stop(input_station)

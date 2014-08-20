@@ -35,4 +35,24 @@ class Station
     @name = input_name
     DB.exec("UPDATE stations SET name = '#{@name}' WHERE id = '#{self.id}';")
   end
+
+  def add_line(input_train)
+    DB.exec("INSERT INTO stops (stations_id, trains_id) VALUES ('#{self.id}', '#{input_train.id}') RETURNING id;")
+  end
+
+  def line_stop
+    line_stops = []
+    results = DB.exec("SELECT * FROM stops WHERE stations_id = '#{self.id}';")
+    results.each do |train|
+      trains_id = train['trains_id'].to_i
+      stations_id = train['stations_id'].to_i
+      train_search = DB.exec("SELECT * FROM trains WHERE id = #{trains_id};")
+      train_search.each do |train|
+        train_found = train['name']
+        trains_id = train['id'].to_i
+        line_stops << Train.new({:name => train_found, :id => trains_id})
+      end
+    end
+    line_stops
+  end
 end

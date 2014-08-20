@@ -39,4 +39,13 @@ describe Station do
     test_station.edit_station('Linus')
     expect(test_station.name).to eq 'Linus'
   end
+
+  it 'adds a train that stops at a specific station' do
+    test_station = Station.new({:name => 'Snoopy'})
+    test_station.save
+    test_train = Train.new({:name => 'green_line'})
+    test_train.save
+    test_station.add_line(test_train)
+    expect(test_station.line_stop).to eq [test_train]
+  end
 end
