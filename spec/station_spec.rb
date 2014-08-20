@@ -40,7 +40,7 @@ describe Station do
     expect(test_station.name).to eq 'Linus'
   end
 
-  it 'adds a train that stops at a specific station' do
+  it 'adds and finds trains that stops at a specific station' do
     test_station = Station.new({:name => 'Snoopy'})
     test_station.save
     test_train = Train.new({:name => 'green_line'})

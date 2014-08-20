@@ -38,17 +38,12 @@ attr_accessor :name, :id
   end
 
   def stops
-  station_stops = []
-  results = DB.exec("SELECT * FROM stops WHERE trains_id = #{self.id};")
-    results.each do |result|
-      trains_id = result['trains_id'].to_i
-      stations_id = result['stations_id'].to_i
-      station_search = DB.exec("SELECT * FROM stations WHERE id = #{stations_id};")
-      station_search.each do |station|
-        station_found = station['name']
-        stations_id = station['id'].to_i
-        station_stops << Station.new({:name => station_found, :id => stations_id})
-      end
+    station_stops = []
+    results = DB.exec("SELECT stations.* FROM trains JOIN stops ON (trains.id = stops.trains_id) JOIN stations ON (stops.stations_id = stations.id) WHERE trains.id = #{self.id};")
+    results.each do |station|
+      station_found = station['name']
+      stations_id = station['id'].to_i
+      station_stops << Station.new({:name => station_found, :id => stations_id})
     end
     station_stops
   end
