@@ -58,14 +58,4 @@ class Station
       end
     end
   end
-
-  # def self.find(input_station)
-  #   selected_station = []
-  #   Station.all.each do |station|
-  #     if station.name == input_station
-  #     selected_station << station
-  #     end
-  #   end
-  #   selected_station
-  # end
 end

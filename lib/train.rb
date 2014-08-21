@@ -29,12 +29,12 @@ attr_accessor :name, :id
   end
 
   def delete
-    results = DB.exec("DELETE FROM trains WHERE id = #{self.id};")
+    DB.exec("DELETE FROM trains WHERE id = #{self.id};")
   end
 
   def edit_train(input_name)
     @name = input_name
-    DB.exec("UPDATE trains SET name = '#{@name}' WHERE id = '#{self.id}';")
+    DB.exec("UPDATE trains SET name = '#{@name}' WHERE id = #{self.id};")
   end
 
   def stops
@@ -59,17 +59,4 @@ attr_accessor :name, :id
       end
     end
   end
-
-  # def self.find(input_train)
-  #   selected_train = []
-  #   Train.all.each do |train|
-  #     if train.name == input_train
-  #       name = train['name']
-  #       id = train['id'].to_i
-  #     selected_train << Train.new({:name => name, :id => id})
-  #     binding.pry
-  #     end
-  #   end
-  #   selected_train
-  # end
 end

@@ -175,6 +175,17 @@ def list_lines
   end
 end
 
+def remove_train
+  list_trains
+  puts "What train would you like to remove?"
+  chosen_train = gets.chomp
+  train_removed = Train.new({:name => chosen_train, :id => @id})
+  train_removed.delete
+  puts "\n\n"
+  puts "Your train has been removed from the system."
+  puts "\n\n"
+end
+
 main_menu
 
 
